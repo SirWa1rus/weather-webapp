@@ -21,7 +21,7 @@
 # Specifications
 
     -   web app built in python (FastAPI)
-    -   plain http for now (https later, when deployed)
+    -   http
     -   dark gray bg
     -   curved squares that containing the info + shape of search bar
     -   databases holding data -> csv files

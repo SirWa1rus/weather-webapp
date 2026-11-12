@@ -1,0 +1,52 @@
+body {
+  margin: 0;
+  background: #2b2b2b;          /* dark gray background */
+  color: #e8e8e8;
+  font-family: system-ui, sans-serif;
+}
+
+main { max-width: 900px; margin: 0 auto; padding: 24px 16px; }
+
+h1 { margin-top: 0; }
+h2, h3 { font-weight: 500; }
+
+/* Rounded (pill-shaped) search bar */
+.search {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  background: #3a3a3a;
+  border-radius: 999px;
+  padding: 8px;
+}
+.search input, .search button {
+  border: none;
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-size: 1rem;
+}
+.search input { flex: 1 1 160px; background: #4a4a4a; color: #e8e8e8; color-scheme: dark; }
+.search button { background: #5b8def; color: white; cursor: pointer; }
+
+/* Curved squares holding the info */
+.card {
+  background: #3a3a3a;
+  border-radius: 16px;
+  padding: 16px;
+}
+.card.error { margin-top: 16px; background: #5a3030; }
+.label { font-size: 0.85rem; color: #aaa; }
+.value { font-size: 1.4rem; margin-top: 4px; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+.hourly {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 8px;
+}
+.card.small { padding: 10px; text-align: center; }
+.card.small .value { font-size: 1.1rem; }

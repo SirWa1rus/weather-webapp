@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Weather Lookup</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <main>
+    <h1>Weather Lookup</h1>
+
+    <form class="search" method="get" action="/">
+      <input name="city" list="city-list" placeholder="Location (e.g. Chicago)"
+             value="{{ city }}" required>
+      <datalist id="city-list">
+        {% for c in cities %}<option value="{{ c }}">{% endfor %}
+      </datalist>
+      <input name="date" type="date" min="{{ min_date }}" max="{{ max_date }}"
+             value="{{ date_text }}" required>
+      <button type="submit">Search</button>
+    </form>
+
+    {% if error %}
+      <div class="card error">{{ error }}</div>
+    {% endif %}
+
+    {% macro temp(value) %}{{ "%.0f°F"|format(value) if value is not none else "—" }}{% endmacro %}
+
+    {% if weather %}
+      <h2>{{ weather.city }} · {{ weather.date }}</h2>
+
+      <div class="grid">
+        <div class="card"><div class="label">High / Low</div>
+          <div class="value">{{ temp(weather.high) }} / {{ temp(weather.low) }}</div></div>
+        <div class="card"><div class="label">Conditions</div>
+          <div class="value">{{ weather.conditions or "—" }}</div></div>
+        <div class="card"><div class="label">Sunrise</div>
+          <div class="value">{{ weather.sunrise or "—" }}</div></div>
+        <div class="card"><div class="label">Sunset</div>
+          <div class="value">{{ weather.sunset or "—" }}</div></div>
+      </div>
+
+      <h3>Hourly</h3>
+      <div class="hourly">
+        {% for h in weather.hourly %}
+          <div class="card small"><div class="label">{{ h.hour }}</div>
+            <div class="value">{{ temp(h.temp) }}</div></div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </main>
+</body>
+</html>
